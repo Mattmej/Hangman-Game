@@ -84,7 +84,10 @@ document.onkeyup = function (event) {
         for (i = 0; i < currentWord.length; i++) {
 
             if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
-                // # display letter in the correct slot on the screen
+                /* # display letter in the correct slot on the screen
+                    1. Will create row with a # of columns that equals the number of letters in the selected word.
+                    2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
+                */
                 tries--;    // number of tries goes down by 1.
                 wordDisplay.splice(i, 0, pressedKey);   // adds the pressed key to the wordDisplay array
                 console.log(wordDisplay);
@@ -119,30 +122,7 @@ currentWord = "bottle"
 
 
 
-
-
-
-
-
-
-
-
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
