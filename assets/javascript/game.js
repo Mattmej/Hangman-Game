@@ -44,7 +44,32 @@ Game Plan:
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////
 
+Troubleshooting
+
+1. Problem: Attempts to push into empty "wordDisplay" array 
+    a. Issue: Pushing into an empty array causes the elements to be out of order at first.
+                If all the correct letters are guessed, then all the wordDisplay elements are in the proper order.
+        i.  if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
+                wordDisplay.splice(i, 0, pressedKey);   // adds the pressed key to the wordDisplay array}
+    b. Attempt 1: Initialize an empty array (with 0's as elements) with the word's length via a "for" loop.
+        i. Result: Success!
+    c. Attempt 2: Same as (b), but with empty strings in place of 0's.
+        i. Result: Success!
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 */
 
 // random number between 0 and the array length:
@@ -56,14 +81,16 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 // This variable will select a random word in the easyWords array.
 var currentWord =  easyWords[Math.floor((Math.random()* easyWords.length))];
+document.write(currentWord);
 
 var wordSlot = [];
 // var wordSlot2 = [];
 var wordDisplay = [];
 
-for (j = 0; j < currentWord.length; j++) {
+for (i = 0; i < currentWord.length; i++) {
     // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
-    wordSlot.push(currentWord.charAt(j));      // Will hold the letters. Will remove elements as user guesses them. [works correctly]
+    wordSlot.push(currentWord.charAt(i));      // Will hold the letters. Will remove elements as user guesses them. [works correctly]
+    wordDisplay[i] = "";
 }
 
 console.log(wordSlot);
@@ -77,7 +104,8 @@ document.onkeyup = function (event) {
 
     // Captures the key press, converts it to lowercase, and saves it to a variable.
     var pressedKey = String.fromCharCode(event.which).toLowerCase();
-    console.log(pressedKey);
+    // console.log(pressedKey);
+    // console.log(alphabet.includes(pressedKey));
 
     if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
 
@@ -89,9 +117,10 @@ document.onkeyup = function (event) {
                     2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
                 */
                 tries--;    // number of tries goes down by 1.
-                wordDisplay.splice(i, 0, pressedKey);   // adds the pressed key to the wordDisplay array
+                wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element
+                // wordDisplay.push(pressedKey);
                 console.log(wordDisplay);
-
+                // document.write("Tries: " + tries);
 
 
 
@@ -112,10 +141,10 @@ Example of loop:
 currentWord = "bottle"
 
         for (i = 0; i < currentWord.length; i++) {      // currentWord.length = 6
-            if (pressedKey === currentWord.charAt(i)) {     // so, if user selects "o." o = currentWord.charAt(1)
+            // loop i = 0
 
-
-
+            if (pressedKey === currentWord.charAt(i)) {     // if user happens to select "b",
+                wordDisplay.splice(i, 0, pressedKey);       // adds the pressed key to the wordDisplay array at position 0.
             }
         }
 
