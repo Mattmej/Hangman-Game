@@ -38,6 +38,7 @@ Game Plan:
 12. If # of tries = 0,
     a. Game over.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
+    c. Maybe a function can be created.
 
 13. ...but what if the user DOESN'T enter a letter of the alphabet?
     a. User gets a prompt saying "Enter a letter of the alphabet!"
@@ -122,51 +123,22 @@ document.onkeyup = function (event) {
                 console.log(wordDisplay);
                 // document.write("Tries: " + tries);
 
-
-
-
-
-
-
             }
-        }
 
-        
-
-
-/*
-
-Example of loop:
-
-currentWord = "bottle"
-
-        for (i = 0; i < currentWord.length; i++) {      // currentWord.length = 6
-            // loop i = 0
-
-            if (pressedKey === currentWord.charAt(i)) {     // if user happens to select "b",
-                wordDisplay.splice(i, 0, pressedKey);       // adds the pressed key to the wordDisplay array at position 0.
+            else {
+                tries--;
+                // # displays hangman part
             }
+            
         }
-
-
-
-
-*/
-
-
-
-
 
     }
 
+    else {          // when the pressed key is NOT an element of the alphabet array
+        alert("Press a valid key!");
+    }
 
-
-
-
-
-
-
-
+    // Set up score loop here.
 
 
 
