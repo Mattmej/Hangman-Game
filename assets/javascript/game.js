@@ -67,7 +67,8 @@ Troubleshooting
                     will be inside the if/else statements and outside of the for loop.
         i. Result: Failure. Had to roll back to before attempt.
         ii. In the re-ordering, the variable "i" was not yet defined.
-    c. Attempt 2: Create a double "for" loop. One loop will go through the number of remaining tries, the other will compare the user's
+    c. Attempt 2: Create function for comparing user entry to current word letters. This will potentially make the code easier to manage.
+    d. Attempt 3: Create a double "for" loop. One loop will go through the number of remaining tries, the other will compare the user's
                     entry to the letters of the current word.
 
 
@@ -135,7 +136,7 @@ document.onkeyup = function (event) {
 
         if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
 
-            for (i = 0; i < currentWord.length; i++) {  // checks user keyboard input
+            for (i = 0; i < currentWord.length; i++) {  // checks user keyboard input against the current word.
 
                 
     
