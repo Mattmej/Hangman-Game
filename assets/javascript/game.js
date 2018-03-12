@@ -85,6 +85,9 @@ Troubleshooting
         i. e.g. if the length of the current word is 5 letters long (e.g. "apple"), then the guessed letter was stored
             in the guessedLetters array 5 times.
 
+4. Problems: Correct logging of guessed letters
+    a. Issue: 
+
 
 
 
@@ -121,6 +124,7 @@ var showGuessedLetters = document.getElementById("guesses");
 
 
 
+
 for (i = 0; i < currentWord.length; i++) {
     // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
     wordSlot.push(currentWord.charAt(i));      // Will hold the letters. Will remove elements as user guesses them. [works correctly]
@@ -134,6 +138,9 @@ showWordDisplay.innerHTML = wordDisplay.join('');
 // console.log(wordSlot);
 var tries = 10;
 var gameOver = false;
+
+var showTries = document.getElementById("tries");
+showTries.innerHTML = "Tries: " + tries;
 
 
 
@@ -189,6 +196,9 @@ document.onkeyup = function (event) {
 
             showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
             showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
+
+            showTries.innerHTML = "Tries: " + tries;
+
 
     
             // if (wordDisplay === currentWord) {
