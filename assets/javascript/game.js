@@ -106,7 +106,9 @@ var wordSlot = [];
 // var wordSlot2 = [];
 var wordDisplay = [];
 // var showWordDisplay = document.createElement("div");
-var showWordDisplay = document.getElementById("holder");
+var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
+var guessedLetters = [];    // will hold the incorrect letters.
+var showGuessedLetters = document.getElementById("guesses");
 
 
 
@@ -151,10 +153,10 @@ document.onkeyup = function (event) {
                 // console.log(wordDisplay);
             }
 
-            // else {
-            //     // tries--;
+            else {
+                guessedLetters.unshift(pressedKey);
             //     // # displays hangman part
-            // }
+            }
         }
     
     }
@@ -166,10 +168,11 @@ document.onkeyup = function (event) {
 
             checkUserEntry();   // this will change the entries of wordDisplay.
             tries--;        // these are counted correctly! Yes!
-            console.log(wordDisplay);
-            console.log("Tries = " + tries);
+            // console.log(wordDisplay);
+            // console.log("Tries = " + tries);
 
-            showWordDisplay.innerHTML = wordDisplay.join('');
+            showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
+            showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
 
     
             // if (wordDisplay === currentWord) {
