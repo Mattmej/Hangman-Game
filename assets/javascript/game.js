@@ -91,7 +91,7 @@ var wordDisplay = [];
 for (i = 0; i < currentWord.length; i++) {
     // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
     wordSlot.push(currentWord.charAt(i));      // Will hold the letters. Will remove elements as user guesses them. [works correctly]
-    wordDisplay[i] = "";
+    wordDisplay[i] = "_";
 }
 
 console.log(wordSlot);
@@ -108,37 +108,57 @@ document.onkeyup = function (event) {
     // console.log(pressedKey);
     // console.log(alphabet.includes(pressedKey));
 
-    if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
+    if (tries > 0) {    // if the user still has tries
 
-        for (i = 0; i < currentWord.length; i++) {
+        if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
 
-            if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
-                /* # display letter in the correct slot on the screen
-                    1. Will create row with a # of columns that equals the number of letters in the selected word.
-                    2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
-                */
-                tries--;    // number of tries goes down by 1.
-                wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element
-                // wordDisplay.push(pressedKey);
-                console.log(wordDisplay);
-                // document.write("Tries: " + tries);
-
+            for (i = 0; i < currentWord.length; i++) {  // checks user keyboard input
+    
+                if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
+                    /* # display letter in the correct slot on the screen
+                        1. Will create row with a # of columns that equals the number of letters in the selected word.
+                        2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
+                    */
+                    tries--;    // number of tries goes down by 1.
+                    wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element
+                    // wordDisplay.push(pressedKey);
+                    console.log(wordDisplay);
+                    // document.write("Tries: " + tries);
+    
+                }
+    
+                else {
+                    tries--;
+                    // # displays hangman part
+                }
+                
+            }
+    
+            if (wordDisplay === currentWord) {
+                displayWinScreen();     // Need to define.
             }
 
-            else {
-                tries--;
-                // # displays hangman part
-            }
-            
+
+
+        }
+    
+        else {          // when the pressed key is NOT an element of the alphabet array
+            alert("Press a valid key!");
         }
 
     }
 
-    else {          // when the pressed key is NOT an element of the alphabet array
-        alert("Press a valid key!");
+    else if (tries === 0) {
+        displayGameOver();      // Need to define.
     }
 
+
+
+
+
     // Set up score loop here.
+
+
 
 
 
