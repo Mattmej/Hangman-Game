@@ -79,6 +79,11 @@ Troubleshooting
 3. Problem: Displaying guessedLetters array to screen
     a. Issue: Multiple copies of the guessed letter appear on the screen. Only one is supposed to appear.
     b. Attempt 1: Change position or expression of the guessedLetters array
+        i. Result: Success!
+    c. Root of problem: Every time the user's letter looped through the string and found no matching letter,
+                        the letter was stored in the guessedLetters array.
+        i. e.g. if the length of the current word is 5 letters long (e.g. "apple"), then the guessed letter was stored
+            in the guessedLetters array 5 times.
 
 
 
@@ -158,8 +163,15 @@ document.onkeyup = function (event) {
             }
 
             else {
-                guessedLetters.unshift(pressedKey);
-            //     // # displays hangman part
+                // # displays hangman part
+                if (guessedLetters.includes(pressedKey) === false) {
+                    guessedLetters.unshift(pressedKey)
+                }
+
+                else {
+                    return;
+                }
+                
             }
         }
     
