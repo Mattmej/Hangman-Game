@@ -65,6 +65,10 @@ Troubleshooting
     b. Attempt 1: Reorder loops and if/else statements so that the if/else is on the outside
                     and contains the for loops. The statements displaying the word to the page
                     will be inside the if/else statements and outside of the for loop.
+        i. Result: Failure. Had to roll back to before attempt.
+        ii. In the re-ordering, the variable "i" was not yet defined.
+    c. Attempt 2: Create a double "for" loop. One loop will go through the number of remaining tries, the other will compare the user's
+                    entry to the letters of the current word.
 
 
 
