@@ -18,7 +18,7 @@ Game Plan:
         i. We will most likely need to use the charAt() method.
 
     7. If the input matches the first letter of the word
-        a. Letter appears on screen
+        a. Letter appears on screen                                                                     (in progress)
         b. # of tries goes down by 1.
 
     8. If the input doesn't match the first letter of the word
@@ -58,6 +58,13 @@ Troubleshooting
         i. Result: Success!
     c. Attempt 2: Same as (b), but with empty strings in place of 0's.
         i. Result: Success!
+
+2. Problem: Displaying wordDisplay array to screen
+    a. Issue: Number of times user input is displayed to screen is limited by the link
+                of the current word.
+    b. Attempt 1: Reorder loops and if/else statements so that the if/else is on the outside
+                    and contains the for loops. The statements displaying the word to the page
+                    will be inside the if/else statements and outside of the for loop.
 
 
 
@@ -100,7 +107,7 @@ for (i = 0; i < currentWord.length; i++) {
 
 }
 
-showWordDisplay.innerHTML = wordDisplay;
+showWordDisplay.innerHTML = wordDisplay.join('');
 
 
 // console.log(wordSlot);
@@ -135,8 +142,8 @@ document.onkeyup = function (event) {
                     */
                     tries--;    // number of tries goes down by 1.
                     wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element
-                    // console.log(wordDisplay);    
-                    showWordDisplay.textContent = wordDisplay;
+                    console.log(wordDisplay);    
+                    showWordDisplay.innerHTML = wordDisplay.join('');
                     
                 }
     
