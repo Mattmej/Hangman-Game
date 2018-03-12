@@ -82,21 +82,31 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 // This variable will select a random word in the easyWords array.
 var currentWord =  easyWords[Math.floor((Math.random()* easyWords.length))];
-document.write(currentWord);
+// document.write(currentWord);
+console.log(currentWord);
 
 var wordSlot = [];
 // var wordSlot2 = [];
 var wordDisplay = [];
+// var showWordDisplay = document.createElement("div");
+var showWordDisplay = document.getElementById("holder");
+
+
 
 for (i = 0; i < currentWord.length; i++) {
     // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
     wordSlot.push(currentWord.charAt(i));      // Will hold the letters. Will remove elements as user guesses them. [works correctly]
-    wordDisplay[i] = "_";
+    wordDisplay[i] = "_";                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
+
 }
 
-console.log(wordSlot);
+showWordDisplay.innerHTML = wordDisplay;
+
+
+// console.log(wordSlot);
 var tries = 10;
 var gameOver = false;
+
 
 
 // Captures keyboard input. Depending on the letter pressed it will "call" (execute) different functions.
@@ -108,11 +118,15 @@ document.onkeyup = function (event) {
     // console.log(pressedKey);
     // console.log(alphabet.includes(pressedKey));
 
+
+
     if (tries > 0) {    // if the user still has tries
 
         if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
 
             for (i = 0; i < currentWord.length; i++) {  // checks user keyboard input
+
+                
     
                 if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
                     /* # display letter in the correct slot on the screen
@@ -121,10 +135,9 @@ document.onkeyup = function (event) {
                     */
                     tries--;    // number of tries goes down by 1.
                     wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element
-                    // wordDisplay.push(pressedKey);
-                    console.log(wordDisplay);
-                    // document.write("Tries: " + tries);
-    
+                    // console.log(wordDisplay);    
+                    showWordDisplay.textContent = wordDisplay;
+                    
                 }
     
                 else {
@@ -134,9 +147,9 @@ document.onkeyup = function (event) {
                 
             }
     
-            if (wordDisplay === currentWord) {
-                displayWinScreen();     // Need to define.
-            }
+            // if (wordDisplay === currentWord) {
+            //     displayWinScreen();     // Need to define.
+            // }
 
 
 
@@ -148,9 +161,9 @@ document.onkeyup = function (event) {
 
     }
 
-    else if (tries === 0) {
-        displayGameOver();      // Need to define.
-    }
+    // else if (tries === 0) {
+    //     displayGameOver();      // Need to define.
+    // }
 
 
 
