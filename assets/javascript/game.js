@@ -76,6 +76,10 @@ Troubleshooting
         i. Was put inside of the "for" loop, causing the number of tries to go down the same number of times
             as the loop ran.
 
+3. Problem: Displaying guessedLetters array to screen
+    a. Issue: Multiple copies of the guessed letter appear on the screen. Only one is supposed to appear.
+    b. Attempt 1: Change position or expression of the guessedLetters array
+
 
 
 
