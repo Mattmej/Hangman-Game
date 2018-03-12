@@ -14,12 +14,12 @@ Game Plan:
 
 6. Whenever the user enters a letter of the alphabet,
     a. Convert the letter to lowercase.                                                                     (o)
-    b. Compare the letter to the letters of the word array
+    b. Compare the letter to the letters of the word array                                              (in progress)
         i. We will most likely need to use the charAt() method.
 
     7. If the input matches the first letter of the word
-        a. Letter appears on screen                                                                     (in progress)
-        b. # of tries goes down by 1.
+        a. Letter appears on screen                                                                         (o)
+        b. # of tries goes down by 1.                                                                       (o)
 
     8. If the input doesn't match the first letter of the word
         a. Go to next letter of the word.
@@ -27,9 +27,9 @@ Game Plan:
     9. Do step 5 and 6 for all the letters of the word.
 
     10. If the input doesn't match any of the letters of the word, 
-        a. Letter appears in "used letter" section.
+        a. Letter appears in "used letter" section.                                                         (o)
         b. Hangman body part drawn.
-        c. # of tries goes down by 1.
+        c. # of tries goes down by 1.                                                                       (o)
 
 11. If user guessed all letters of word correctly,
     a. User wins.
@@ -40,7 +40,7 @@ Game Plan:
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
     c. Maybe a function can be created.
 
-13. ...but what if the user DOESN'T enter a letter of the alphabet?
+13. ...but what if the user DOESN'T enter a letter of the alphabet?                                         (o)
     a. User gets a prompt saying "Enter a letter of the alphabet!"
 
 
@@ -86,7 +86,9 @@ Troubleshooting
             in the guessedLetters array 5 times.
 
 4. Problems: Correct logging of guessed letters
-    a. Issue: 
+    a. Issue: Sometimes the key pressed is part of the current word, but the guessed letter is still not treated as 
+                part of the word.
+    b. Attempt 1: Make if/else statement more specific
 
 
 
