@@ -68,8 +68,13 @@ Troubleshooting
         i. Result: Failure. Had to roll back to before attempt.
         ii. In the re-ordering, the variable "i" was not yet defined.
     c. Attempt 2: Create function for comparing user entry to current word letters. This will potentially make the code easier to manage.
+        i. Result: Success!
     d. Attempt 3: Create a double "for" loop. One loop will go through the number of remaining tries, the other will compare the user's
                     entry to the letters of the current word.
+        i. Result: untried.
+    e. Root of problem: incrementing # of tries
+        i. Was put inside of the "for" loop, causing the number of tries to go down the same number of times
+            as the loop ran.
 
 
 
@@ -121,6 +126,8 @@ var gameOver = false;
 
 
 
+
+
 // Captures keyboard input. Depending on the letter pressed it will "call" (execute) different functions.
 document.onkeyup = function (event) {
 
@@ -130,34 +137,40 @@ document.onkeyup = function (event) {
     // console.log(pressedKey);
     // console.log(alphabet.includes(pressedKey));
 
+    function checkUserEntry() {
+
+        for (i = 0; i < currentWord.length; i++) {  // checks user keyboard input against the current word.
+
+            if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
+                /* # display letter in the correct slot on the screen
+                    1. Will create row with a # of columns that equals the number of letters in the selected word.
+                    2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
+                */
+                // tries--;    // number of tries goes down by 1.
+                wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
+                // console.log(wordDisplay);
+            }
+
+            // else {
+            //     // tries--;
+            //     // # displays hangman part
+            // }
+        }
+    
+    }
 
 
     if (tries > 0) {    // if the user still has tries
 
         if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
 
-            for (i = 0; i < currentWord.length; i++) {  // checks user keyboard input against the current word.
+            checkUserEntry();   // this will change the entries of wordDisplay.
+            tries--;        // these are counted correctly! Yes!
+            console.log(wordDisplay);
+            console.log("Tries = " + tries);
 
-                
-    
-                if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
-                    /* # display letter in the correct slot on the screen
-                        1. Will create row with a # of columns that equals the number of letters in the selected word.
-                        2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
-                    */
-                    tries--;    // number of tries goes down by 1.
-                    wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element
-                    console.log(wordDisplay);    
-                    showWordDisplay.innerHTML = wordDisplay.join('');
-                    
-                }
-    
-                else {
-                    tries--;
-                    // # displays hangman part
-                }
-                
-            }
+            showWordDisplay.innerHTML = wordDisplay.join('');
+
     
             // if (wordDisplay === currentWord) {
             //     displayWinScreen();     // Need to define.
