@@ -41,7 +41,7 @@ Game Plan:
         b. Hangman body part drawn.
         c. # of tries goes down by 1.                                                                       (o)
 
-12. If user guessed all letters of word correctly,
+12. If user guessed all letters of word correctly,                                                          (o)
     a. User wins.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
 
@@ -250,6 +250,14 @@ document.onkeyup = function (event) {
         return true;
     }
 
+    function displayGameOver() {
+        alert("Game Over!");
+        var confirmNewGame = confirm("Start a new game?");
+        if (confirmNewGame) {
+            location.reload();
+        }
+    }
+
 
     /* ////////////////////////////////////////////////////
 
@@ -351,9 +359,9 @@ document.onkeyup = function (event) {
         // }
     }
 
-    // else if (tries === 0) {
-    //     displayGameOver();      // Need to define.
-    // }
+    else {
+        displayGameOver();      // Need to define.
+    }
 
 
 
