@@ -1,10 +1,20 @@
 /*
 Game Plan:
 
-1. Create an array of words.                                                                                (o)
+1. Create an array of words.                                                                            (in progress)
     a. These words will be used in the hangman game for users to guess.
+    b. Easy mode array                                                                                      (o)
+    c. Normal mode
+    d. Hard mode
 
 2. Create an array of the letters of the alphabet.                                                          (o)
+
+3. Create a variable that stores the number of tries                                                    (in progress)
+    a. If the currentWord has less than 6 letters, 
+        then the # of tries will be 10.
+    b. If the currentWord has 6 or more letters,
+        then the # of tries will be the # of letters in the word
+        multiplied by 2.
 
 3. Make the website accept keyboard input.                                                                  (o)
 
@@ -14,7 +24,7 @@ Game Plan:
 
 6. Whenever the user enters a letter of the alphabet,
     a. Convert the letter to lowercase.                                                                     (o)
-    b. Compare the letter to the letters of the word array                                              (in progress)
+    b. Compare the letter to the letters of the word array                                                  (o)
         i. We will most likely need to use the charAt() method.
 
     7. If the input matches the first letter of the word
@@ -22,9 +32,9 @@ Game Plan:
         b. # of tries goes down by 1.                                                                       (o)
 
     8. If the input doesn't match the first letter of the word
-        a. Go to next letter of the word.
+        a. Go to next letter of the word.                                                                   (0)
 
-    9. Do step 5 and 6 for all the letters of the word.
+    9. Do step 5 and 6 for all the letters of the word.                                                     (o)
 
     10. If the input doesn't match any of the letters of the word, 
         a. Letter appears in "used letter" section.                                                         (o)
@@ -98,6 +108,13 @@ Troubleshooting
         v. I then created an "if" statement outside the "for" loop that would store the user entry in the guessedLetters array if it was
             not contained in the current word.
 
+5. Problem: Win screen
+    a. Issue: Displays "you won" when one letter belonging to the word is pressed.
+        i. The "if" statement that displayWinScreen() is part of says that when all elements of one array equal all of the elements
+            of the other, then the user wins.
+        ii. But when one key is pressed, then both arrays update themselves with the letter, setting them equal.
+    b. Attempt 1: Define the wordSlot array in a different place, probably in the "for" loop that checks the keyboard entry against the current word.
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -132,6 +149,8 @@ for (i = 0; i < currentWord.length; i++) {
     wordDisplay[i] = "_";                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
 
 }
+
+console.log("wordSlot = " + wordSlot);
 
 showWordDisplay.innerHTML = wordDisplay.join('');
 
@@ -197,6 +216,21 @@ document.onkeyup = function (event) {
     
     }
 
+    function displayWinScreen() {
+        alert("You won!");
+        var confirmNewGame = confirm("Start a new game?");
+        if (confirmNewGame) {
+            location.reload();
+        }
+        // else {
+        //     break;
+        // }
+    }
+
+    function compareArrayElements(element) {
+        return element;
+    }
+
     /*
     //////////////////////////////////////////////////
 
@@ -256,11 +290,15 @@ document.onkeyup = function (event) {
 
             showTries.innerHTML = "Tries: " + tries;
 
+            console.log("wordDisplay = " + wordDisplay);
+            
+            if (wordDisplay.every(compareArrayElements) === wordSlot.every(compareArrayElements)) {
+                displayWinScreen();
+            }
+
 
     
-            // if (wordDisplay === currentWord) {
-            //     displayWinScreen();     // Need to define.
-            // }
+
 
 
 
@@ -270,6 +308,9 @@ document.onkeyup = function (event) {
             alert("Press a valid key!");
         }
 
+        // if (wordDisplay == wordSlot) {
+        //     displayWinScreen();     // Need to define.
+        // }
     }
 
     // else if (tries === 0) {
