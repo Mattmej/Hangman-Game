@@ -221,7 +221,10 @@ document.onkeyup = function (event) {
         }
 
         if (currentWord.includes(pressedKey) === false) {
-            guessedLetters.unshift(pressedKey);
+            
+            if (guessedLetters.includes(pressedKey) === false) {
+                guessedLetters.unshift(pressedKey);
+            }
         }
     
     }
