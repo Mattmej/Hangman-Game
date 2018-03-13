@@ -114,6 +114,15 @@ Troubleshooting
             of the other, then the user wins.
         ii. But when one key is pressed, then both arrays update themselves with the letter, setting them equal.
     b. Attempt 1: Define the wordSlot array in a different place, probably in the "for" loop that checks the keyboard entry against the current word.
+        i. Result: Failure. 
+        ii. Now if I enter any letter, I win.
+    c. Attempt 2: Create a function to compare 2 array values.
+        i. Result: Failure.
+        ii. If I enter a letter that matches a letter toward the beginning of the current word, then I win. 
+        iii. Maybe there is a problem in the way I have expressed the function.
+    d. Attempt 3: Include "continue" statements into the comparison function.
+        i. Result: Failure.
+    e. Attempt 4: Put the displayWinScreen function inside the comparison function.
 
 
 
@@ -145,7 +154,7 @@ var showGuessedLetters = document.getElementById("guesses");
 
 for (i = 0; i < currentWord.length; i++) {
     // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
-    wordSlot.push(currentWord.charAt(i));      // Will hold the letters. Will remove elements as user guesses them. [works correctly]
+    wordSlot.push(currentWord.charAt(i));      // Will hold the letters.
     wordDisplay[i] = "_";                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
 
 }
@@ -187,6 +196,7 @@ document.onkeyup = function (event) {
                 // tries--;    // number of tries goes down by 1.
                 wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
                 // console.log(wordDisplay);
+
             }
 
             // else if (pressedKey != currentWord.charAt(i)) {
@@ -227,9 +237,32 @@ document.onkeyup = function (event) {
         // }
     }
 
-    function compareArrayElements(element) {
-        return element;
+    function compareArrayElements(arr1, arr2) {
+        for (i = 0; i < currentWord.length; i++) {
+            if (arr1[i] === arr2[i]) {
+                return true;
+                continue;
+            }
+            else {
+                return false;
+                continue;
+            }
+        }
     }
+    /* ////////////////////////////////////////////////////
+
+    Aside: Test case for compareArrayElements function
+
+    arr1 = wordSlot = ["h", "t", "m", "l"]
+    arr2 = wordDisplay = ["h", "_", "_", "_"]
+
+    for loop:
+    i = 0
+        arr1[0] = "h"
+        arr2[0] = "h"
+        return true
+
+    /////////////////////////////////////////////////////// */
 
     /*
     //////////////////////////////////////////////////
@@ -292,9 +325,12 @@ document.onkeyup = function (event) {
 
             console.log("wordDisplay = " + wordDisplay);
             
-            if (wordDisplay.every(compareArrayElements) === wordSlot.every(compareArrayElements)) {
+            compareArrayElements(wordDisplay, wordSlot);
+
+            if (compareArrayElements(wordDisplay, wordSlot)) {
                 displayWinScreen();
             }
+            
 
 
     
