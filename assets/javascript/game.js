@@ -89,15 +89,14 @@ Troubleshooting
     a. Issue: Sometimes the key pressed is part of the current word, but the guessed letter is still not treated as 
                 part of the word.
     b. Attempt 1: Make if/else statement more specific
-
-
-
-
-
-
-
-
-
+        i. Result: Success!
+    c. Root of problem: "else" part of checkUserEntry() was not properly phrased.
+        i. I fixed the issue in (a) in a way that I forgot.
+        ii. Then, I noticed that even the correct letters were stored in the guessedLetters array.
+        iii. Then I noticed that the "else" statement in the checkUserEntry() function always stored any letter that the user entered.
+        iv. So I replaced that "else" statement with one that contained "continue."
+        v. I then created an "if" statement outside the "for" loop that would store the user entry in the guessedLetters array if it was
+            not contained in the current word.
 
 
 
@@ -171,20 +170,76 @@ document.onkeyup = function (event) {
                 // console.log(wordDisplay);
             }
 
-            else {
-                // # displays hangman part
-                if (guessedLetters.includes(pressedKey) === false) {
-                    guessedLetters.unshift(pressedKey)
-                }
+            // else if (pressedKey != currentWord.charAt(i)) {
 
-                else {
-                    return;
-                }
+            //     var guessedKey = pressedKey;
+            //     if (guessedLetters.includes(guessedKey) === false) {
+            //         guessedLetters.unshift(guessedKey)
+            //     }
+
+            //     else {
+            //         // return;
+            //         continue;
+            //     }
                 
+            // }
+
+            else {
+                continue;
             }
+
+           
+        }
+
+        if (currentWord.includes(pressedKey) === false) {
+            guessedLetters.unshift(pressedKey);
         }
     
     }
+
+    /*
+    //////////////////////////////////////////////////
+
+    Aside: Test case for checkUserEntry() function
+
+    currentWord = "html"
+    pressedKey = "m"
+
+    for loop:
+    i = 0  
+        currentWord.charAt(0) == "h"
+        "m" != "h"
+        pressedKey != currentWord.charAt(0)
+
+        "m" not in guessedLetters
+        guessedLetters.unshift(pressedKey)
+
+    i = 1
+        currentWord.charAt(1) == "t"
+        "m" != "t"
+        pressedKey != currentWord.charAt(1)
+        
+        "m" in guessedLetters
+        On to next iteration.
+
+    i = 2
+        currentWord.charAt(2) == "m"
+        "m" === "m"
+        pressedKey === currentWord.charAt(2)
+        wordDisplay.splice(2, 1, pressedKey)    =====> adds pressedKey to wordDisplay array at index 2, removing one element.
+        
+    i = 3
+        currentWord.charAt(3) == "l"
+        "m" != "l"
+        pressedKey != currentWord.charAt(3)
+
+        "m" in guessedLetters
+        Iterations stop here.
+
+
+
+    ///////////////////////////////////////////////////
+    */
 
 
     if (tries > 0) {    // if the user still has tries
