@@ -16,41 +16,41 @@ Game Plan:
         then the # of tries will be the # of letters in the word
         multiplied by 2.
 
-3. Make the website accept keyboard input.                                                                  (o)
+4. Make the website accept keyboard input.                                                                  (o)
 
-4. Have the website select a word from the array.                                                           (o)
+5. Have the website select a word from the array.                                                           (o)
 
-5. Do the following steps until game over or success.   
+6. Do the following steps until game over or success.   
 
-6. Whenever the user enters a letter of the alphabet,
+7. Whenever the user enters a letter of the alphabet,
     a. Convert the letter to lowercase.                                                                     (o)
     b. Compare the letter to the letters of the word array                                                  (o)
         i. We will most likely need to use the charAt() method.
 
-    7. If the input matches the first letter of the word
+    8. If the input matches the first letter of the word
         a. Letter appears on screen                                                                         (o)
         b. # of tries goes down by 1.                                                                       (o)
 
-    8. If the input doesn't match the first letter of the word
+    9. If the input doesn't match the first letter of the word
         a. Go to next letter of the word.                                                                   (0)
 
-    9. Do step 5 and 6 for all the letters of the word.                                                     (o)
+    10. Do step 5 and 6 for all the letters of the word.                                                    (o)
 
-    10. If the input doesn't match any of the letters of the word, 
+    11. If the input doesn't match any of the letters of the word, 
         a. Letter appears in "used letter" section.                                                         (o)
         b. Hangman body part drawn.
         c. # of tries goes down by 1.                                                                       (o)
 
-11. If user guessed all letters of word correctly,
+12. If user guessed all letters of word correctly,
     a. User wins.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
 
-12. If # of tries = 0,
+13. If # of tries = 0,
     a. Game over.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
     c. Maybe a function can be created.
 
-13. ...but what if the user DOESN'T enter a letter of the alphabet?                                         (o)
+14. ...but what if the user DOESN'T enter a letter of the alphabet?                                         (o)
     a. User gets a prompt saying "Enter a letter of the alphabet!"
 
 
@@ -123,6 +123,16 @@ Troubleshooting
     d. Attempt 3: Include "continue" statements into the comparison function.
         i. Result: Failure.
     e. Attempt 4: Put the displayWinScreen function inside the comparison function.
+        i. Realization: I don't think this will work.
+    f. Attempt 5: Put the comparison function inside the checkUserEntry function.
+        i. Result: Failure.
+    g. Attempt 6: Will try a fix similar to one found at this website: https://stackoverflow.com/questions/4025893/how-to-check-identical-array-in-most-efficient-way
+        i. Result: Failure.
+        ii. Page does not respond upon pressing a correct key. Crashes eventually.
+    h. Attempt 7: Will try attempt 6, but changing the "for" loop index variable to a "j" instead of an "i"
+        i. Result: Success!
+    j. Root of problem: The "for" loop of the function I was placing inside another "for" loop had the same index variable, thus
+                            confusing the program.
 
 
 
@@ -197,27 +207,17 @@ document.onkeyup = function (event) {
                 wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
                 // console.log(wordDisplay);
 
+                // compareArrayElements(wordDisplay, wordSlot);
+
+                // if (compareArrayElements(wordDisplay, wordSlot)) {
+                //     displayWinScreen();
+                // }
+
             }
-
-            // else if (pressedKey != currentWord.charAt(i)) {
-
-            //     var guessedKey = pressedKey;
-            //     if (guessedLetters.includes(guessedKey) === false) {
-            //         guessedLetters.unshift(guessedKey)
-            //     }
-
-            //     else {
-            //         // return;
-            //         continue;
-            //     }
-                
-            // }
 
             else {
                 continue;
-            }
-
-           
+            }          
         }
 
         if (currentWord.includes(pressedKey) === false) {
@@ -238,17 +238,19 @@ document.onkeyup = function (event) {
     }
 
     function compareArrayElements(arr1, arr2) {
-        for (i = 0; i < currentWord.length; i++) {
-            if (arr1[i] === arr2[i]) {
-                return true;
-                continue;
-            }
-            else {
+        for (j = 0; j < currentWord.length; j++) {
+            if (arr1[j] != arr2[j]) {
                 return false;
-                continue;
+                // continue;
             }
+            // else {
+            //     break;
+            // }
         }
+        return true;
     }
+
+
     /* ////////////////////////////////////////////////////
 
     Aside: Test case for compareArrayElements function
@@ -309,6 +311,14 @@ document.onkeyup = function (event) {
     */
 
 
+    /* ==========================
+       ==========================
+       Actual Program
+       ==========================
+       ==========================
+
+    */
+
     if (tries > 0) {    // if the user still has tries
 
         if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
@@ -330,14 +340,6 @@ document.onkeyup = function (event) {
             if (compareArrayElements(wordDisplay, wordSlot)) {
                 displayWinScreen();
             }
-            
-
-
-    
-
-
-
-
         }
     
         else {          // when the pressed key is NOT an element of the alphabet array
