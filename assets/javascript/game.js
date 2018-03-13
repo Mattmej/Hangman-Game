@@ -45,7 +45,7 @@ Game Plan:
     a. User wins.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
 
-13. If # of tries = 0,
+13. If # of tries = 0,                                                                                      (o)
     a. Game over.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
     c. Maybe a function can be created.
