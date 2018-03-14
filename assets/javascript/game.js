@@ -19,16 +19,18 @@ Game Plan:
 4. Make the website accept keyboard input.                                                                  (o)
 
 5. Have the website select a word from the array.                                                           (o)
+    a. Store each letter of the word in an array.
+    b. Create columns equal to the number of letters in the array.
 
 6. Do the following steps until game over or success.   
 
-7. Whenever the user enters a letter of the alphabet,
+7. Whenever the user enters a letter of the alphabet,                                                       (A)
     a. Convert the letter to lowercase.                                                                     (o)
     b. Compare the letter to the letters of the word array                                                  (o)
         i. We will most likely need to use the charAt() method.
 
     8. If the input matches the first letter of the word
-        a. Letter appears on screen                                                                         (o)
+        a. Letter appears in its proper column slot.                                                    (in progress)
         b. # of tries goes down by 1.                                                                       (o)
 
     9. If the input doesn't match the first letter of the word
@@ -45,10 +47,10 @@ Game Plan:
     a. User wins.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
 
-13. If # of tries = 0,                                                                                      (o)
-    a. Game over.
+13. If # of tries = 0,                                                                                      ()
+    a. Display game over somewhere in the document.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
-    c. Maybe a function can be created.
+    c. Maybe a function can be created.                                                                     (o)
 
 14. ...but what if the user DOESN'T enter a letter of the alphabet?                                         (o)
     a. User gets a prompt saying "Enter a letter of the alphabet!"
@@ -134,7 +136,7 @@ Troubleshooting
     j. Root of problem: The "for" loop of the function I was placing inside another "for" loop had the same index variable, thus
                             confusing the program.
 
-
+/////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////
 */
