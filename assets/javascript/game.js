@@ -184,7 +184,7 @@ for (i = 0; i < currentWord.length; i++) {
     wordSlot.push(currentWord.charAt(i));      // Will hold the letters.
     wordDisplay[i] = "_";                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
     var letter = document.createElement("div");     // creates a <div> node
-    letter.className = "col";
+    letter.className = "col bigtext";
     letter.id = "letter-slot";
     var letterSlot = document.createTextNode(wordDisplay[i]);   // creates a "text node" that contains a letter of the current word.
     letter.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
