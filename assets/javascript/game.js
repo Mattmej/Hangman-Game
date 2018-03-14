@@ -149,6 +149,7 @@ Troubleshooting
                                 t: _ _ _ b o t
                                 etc.
     d. Attempt 3: Use querySelectorAll() method
+        i. Result: Success!
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -163,7 +164,7 @@ var easyWords = ["car", "bird", "coffee", "bottle", "shirt", "html"]
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 // This variable will select a random word in the easyWords array.
-var currentWord =  easyWords[Math.floor((Math.random()* easyWords.length))];
+var currentWord = easyWords[Math.floor((Math.random() * easyWords.length))];
 // document.write(currentWord);
 console.log(currentWord);
 
@@ -174,6 +175,8 @@ var wordDisplay = [];
 var guessedLetters = [];    // will hold the incorrect letters.
 var showGuessedLetters = document.getElementById("guesses");
 var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
+
+var hmPics = ["assets/images/hm-stage0", "assets/images/hmstage-1", "assets/images/hm-stage3", "assets/images/hm-stage4", "assets/images/hm-stage5", "assets/images/hm-stage6", "assets/images/hm-stage7", "assets/images/hm-stage8", "assets/images/hm-stage9", "assets/images/hm-stage10"];
 
 
 
@@ -233,7 +236,7 @@ document.onkeyup = function (event) {
                 // console.log(wordDisplay);
 
                 // selects all elements with the class "col" under <div id = "holder"></div>
-                var letter2 = document.getElementById("holder").querySelectorAll(".col");   
+                var letter2 = document.getElementById("holder").querySelectorAll(".col");
                 letter2[i].innerHTML = wordDisplay[i];  // sets the ith child of letter2 to the letter in wordDisplay
                 // ==== ACTIVATE MAYBE ====
                 // letterSlot = document.createTextNode(wordDisplay[i]);
@@ -244,53 +247,53 @@ document.onkeyup = function (event) {
 
             else {
                 continue;
-            }          
-        }
-
-        if (currentWord.includes(pressedKey) === false) {
-            
-            if (guessedLetters.includes(pressedKey) === false) {
-                guessedLetters.unshift(pressedKey);
             }
         }
-    
+
+        if (currentWord.includes(pressedKey) === false) {   // if the pressed key is NOT included in the word
+
+            if (guessedLetters.includes(pressedKey) === false) {    // if the guessedLetters array does NOT contain the pressed key
+                guessedLetters.unshift(pressedKey);     // adds the pressed key to the guessedLetters array
+            }
+        }
+
     }
 
-/*
-
-//////////////////////////////////////////////////////////////////////
-
-Example case:
-currentWord = "bottle"
-pressedKey = "t"
-
-i = 0:
-    "t" != "b"
-    continue
-
-i = 1: 
-    "t" != "o"
-    continue
-
-i = 2: 
-    "t" === "t"
-    wordDisplay = ["_", "_", "_", "_", "_", "_"]
-    but now "t" is added.
-    wordDisplay = ["_", "_", "t", "_", "_", "_"]
-
-
-
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////
-
-
-
-
-*/
+    /*
+    
+    //////////////////////////////////////////////////////////////////////
+    
+    Example case:
+    currentWord = "bottle"
+    pressedKey = "t"
+    
+    i = 0:
+        "t" != "b"
+        continue
+    
+    i = 1: 
+        "t" != "o"
+        continue
+    
+    i = 2: 
+        "t" === "t"
+        wordDisplay = ["_", "_", "_", "_", "_", "_"]
+        but now "t" is added.
+        wordDisplay = ["_", "_", "t", "_", "_", "_"]
+    
+    
+    
+    
+    
+    
+    
+    
+    //////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    
+    */
 
 
 
@@ -346,21 +349,21 @@ i = 2:
             console.log("Tries = " + tries);
 
             // showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
-            
+
             // ==== ACTIVATE LATER ====
             showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
             showTries.innerHTML = "Tries: " + tries;
 
             console.log("wordDisplay = " + wordDisplay);
-           
-            
+
+
             compareArrayElements(wordDisplay, wordSlot);
 
             if (compareArrayElements(wordDisplay, wordSlot)) {
                 displayWinScreen();
             }
         }
-    
+
         else {          // when the pressed key is NOT an element of the alphabet array
             alert("Press a valid key!");
         }
