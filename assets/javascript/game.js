@@ -181,7 +181,7 @@ var guessedLetters = [];    // will hold the incorrect letters.
 var showGuessedLetters = document.getElementById("guesses");
 var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
 
-var hmPics = ["assets/images/hm-stage0.jpg", "assets/images/hm-stage1.jpg", "assets/images/hm-stage3.jpg", "assets/images/hm-stage4.jpg", "assets/images/hm-stage5.jpg", "assets/images/hm-stage6.jpg", "assets/images/hm-stage7.jpg", "assets/images/hm-stage8.jpg", "assets/images/hm-stage9.jpg", "assets/images/hm-stage10.jpg"];
+var hmPics = ["assets/images/hm-stage0.jpg", "assets/images/hm-stage1.jpg", "assets/images/hm-stage2.jpg", "assets/images/hm-stage3.jpg", "assets/images/hm-stage4.jpg", "assets/images/hm-stage5.jpg", "assets/images/hm-stage6.jpg", "assets/images/hm-stage7.jpg", "assets/images/hm-stage8.jpg", "assets/images/hm-stage9.jpg", "assets/images/hm-stage10.jpg"];
 
 var picHolder = document.getElementById("theHangman");
 var img = document.createElement("img");
@@ -215,7 +215,7 @@ console.log("wordSlot = " + wordSlot);
 
 // console.log(wordSlot);
 var tries = 10;
-var gameOver = false;
+// var gameOver = false;
 
 // ACTIVATE LATER
 var showTries = document.getElementById("tries");
@@ -267,6 +267,7 @@ document.onkeyup = function (event) {
                 guessedLetters.unshift(pressedKey);     // adds the pressed key to the guessedLetters array
                 x = x + 1;
                 img.setAttribute("src", hmPics[x]);
+                tries--;
 
             }
         }
@@ -359,7 +360,7 @@ document.onkeyup = function (event) {
         if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
 
             checkUserEntry();   // this will change the entries of wordDisplay.
-            tries--;        // these are counted correctly! Yes!
+            // tries--;        // these are counted correctly! Yes!
             console.log("Tries = " + tries);
 
             // showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
@@ -387,7 +388,7 @@ document.onkeyup = function (event) {
         // }
     }
 
-    else {
+    else if (tries == 0) {
         displayGameOver();      // Need to define.
     }
 
