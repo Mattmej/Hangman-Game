@@ -4,8 +4,8 @@ Game Plan:
 1. Create an array of words.                                                                            (in progress)
     a. These words will be used in the hangman game for users to guess.
     b. Easy mode array                                                                                      (o)
-    c. Normal mode
-    d. Hard mode
+    c. Normal mode                                                                                      (bonus)
+    d. Hard mode                                                                                        (bonus)
 
 2. Create an array of the letters of the alphabet.                                                          (o)
 
@@ -148,7 +148,7 @@ Troubleshooting
                                 o: _ _ _ _ b o
                                 t: _ _ _ b o t
                                 etc.
-                                
+    d. Attempt 3: Use querySelectorAll() method
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -232,11 +232,12 @@ document.onkeyup = function (event) {
                 wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
                 // console.log(wordDisplay);
 
-                var letter2 = document.getElementById("letter-slot");
+                var letter2 = document.getElementById("holder").querySelectorAll(".col");
+                letter2[i].innerHTML = wordDisplay[i];
                 // ==== ACTIVATE MAYBE ====
-                letterSlot = document.createTextNode(wordDisplay[i]);
-                letter2.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
-                showWordDisplay.appendChild(letter2); 
+                // letterSlot = document.createTextNode(wordDisplay[i]);
+                // letter2.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
+                // showWordDisplay.appendChild(letter2); 
 
             }
 
