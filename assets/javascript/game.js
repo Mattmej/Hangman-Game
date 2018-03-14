@@ -166,12 +166,6 @@ var showGuessedLetters = document.getElementById("guesses");
 var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
 
 
-// function displayWordToScreen() {
-//     var letter = document.createElement("div")                  // This variable creates a <div> element.
-
-
-
-// }
 
 
 
@@ -211,8 +205,7 @@ document.onkeyup = function (event) {
 
     // Captures the key press, converts it to lowercase, and saves it to a variable.
     var pressedKey = String.fromCharCode(event.which).toLowerCase();
-    // console.log(pressedKey);
-    // console.log(alphabet.includes(pressedKey));
+
 
     function checkUserEntry() {
 
@@ -295,7 +288,6 @@ document.onkeyup = function (event) {
 
             checkUserEntry();   // this will change the entries of wordDisplay.
             tries--;        // these are counted correctly! Yes!
-            // console.log(wordDisplay);
             // console.log("Tries = " + tries);
 
             // showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
@@ -326,18 +318,6 @@ document.onkeyup = function (event) {
     else {
         displayGameOver();      // Need to define.
     }
-
-
-
-
-
-    // Set up score loop here.
-
-
-
-
-
-
 
 
 
