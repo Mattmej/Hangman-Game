@@ -348,7 +348,7 @@ i = 2:
             // showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
             
             // ==== ACTIVATE LATER ====
-            // showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
+            showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
             showTries.innerHTML = "Tries: " + tries;
 
             console.log("wordDisplay = " + wordDisplay);
