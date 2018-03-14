@@ -136,6 +136,10 @@ Troubleshooting
     j. Root of problem: The "for" loop of the function I was placing inside another "for" loop had the same index variable, thus
                             confusing the program.
 
+6. Problem: Display of word's letters to correct divs of webpage
+    a. Issue: Whenever letters display on screen, they don't go into their divs. Instead, they all clump together into a word.
+    b. Attempt 1: Examine where the js file puts the characters of the wordDisplay array.
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -157,10 +161,17 @@ var wordSlot = [];
 // var wordSlot2 = [];
 var wordDisplay = [];
 // var showWordDisplay = document.createElement("div");
-var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
 var guessedLetters = [];    // will hold the incorrect letters.
 var showGuessedLetters = document.getElementById("guesses");
+var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
 
+
+// function displayWordToScreen() {
+//     var letter = document.createElement("div")                  // This variable creates a <div> element.
+
+
+
+// }
 
 
 
@@ -168,20 +179,27 @@ for (i = 0; i < currentWord.length; i++) {
     // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
     wordSlot.push(currentWord.charAt(i));      // Will hold the letters.
     wordDisplay[i] = "_";                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
+    var letter = document.createElement("div");     // creates a <div> node
+    letter.className = "col";
+    var letterSlot = document.createTextNode(wordDisplay[i]);   // creates a "text node" that contains a letter of the current word.
+    letter.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
+    showWordDisplay.appendChild(letter);            // appends the letter from the last step to the showWordDisplay variable.
 
 }
 
 console.log("wordSlot = " + wordSlot);
 
-showWordDisplay.innerHTML = wordDisplay.join('');
+// showWordDisplay.innerHTML = wordDisplay.join('');
+
 
 
 // console.log(wordSlot);
 var tries = 10;
 var gameOver = false;
 
-var showTries = document.getElementById("tries");
-showTries.innerHTML = "Tries: " + tries;
+// ACTIVATE LATER
+// var showTries = document.getElementById("tries");
+// showTries.innerHTML = "Tries: " + tries;
 
 
 
@@ -209,11 +227,10 @@ document.onkeyup = function (event) {
                 wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
                 // console.log(wordDisplay);
 
-                // compareArrayElements(wordDisplay, wordSlot);
-
-                // if (compareArrayElements(wordDisplay, wordSlot)) {
-                //     displayWinScreen();
-                // }
+                // ==== ACTIVATE MAYBE ====
+                // letterSlot = document.createTextNode(wordDisplay[i]);
+                // letter.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
+                // showWordDisplay.appendChild(letter); 
 
             }
 
@@ -264,66 +281,6 @@ document.onkeyup = function (event) {
     }
 
 
-    /* ////////////////////////////////////////////////////
-
-    Aside: Test case for compareArrayElements function
-
-    arr1 = wordSlot = ["h", "t", "m", "l"]
-    arr2 = wordDisplay = ["h", "_", "_", "_"]
-
-    for loop:
-    i = 0
-        arr1[0] = "h"
-        arr2[0] = "h"
-        return true
-
-    /////////////////////////////////////////////////////// */
-
-    /*
-    //////////////////////////////////////////////////
-
-    Aside: Test case for checkUserEntry() function
-
-    currentWord = "html"
-    pressedKey = "m"
-
-    for loop:
-    i = 0  
-        currentWord.charAt(0) == "h"
-        "m" != "h"
-        pressedKey != currentWord.charAt(0)
-
-        "m" not in guessedLetters
-        guessedLetters.unshift(pressedKey)
-
-    i = 1
-        currentWord.charAt(1) == "t"
-        "m" != "t"
-        pressedKey != currentWord.charAt(1)
-        
-        "m" in guessedLetters
-        On to next iteration.
-
-    i = 2
-        currentWord.charAt(2) == "m"
-        "m" === "m"
-        pressedKey === currentWord.charAt(2)
-        wordDisplay.splice(2, 1, pressedKey)    =====> adds pressedKey to wordDisplay array at index 2, removing one element.
-        
-    i = 3
-        currentWord.charAt(3) == "l"
-        "m" != "l"
-        pressedKey != currentWord.charAt(3)
-
-        "m" in guessedLetters
-        Iterations stop here.
-
-
-
-    ///////////////////////////////////////////////////
-    */
-
-
     /* ==========================
        ==========================
        Actual Program
@@ -341,12 +298,14 @@ document.onkeyup = function (event) {
             // console.log(wordDisplay);
             // console.log("Tries = " + tries);
 
-            showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
-            showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
-
-            showTries.innerHTML = "Tries: " + tries;
+            // showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
+            
+            // ==== ACTIVATE LATER ====
+            // showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
+            // showTries.innerHTML = "Tries: " + tries;
 
             console.log("wordDisplay = " + wordDisplay);
+           
             
             compareArrayElements(wordDisplay, wordSlot);
 
