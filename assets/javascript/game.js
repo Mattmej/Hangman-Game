@@ -166,14 +166,6 @@ var showGuessedLetters = document.getElementById("guesses");
 var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
 
 
-// function displayWordToScreen() {
-//     var letter = document.createElement("div")                  // This variable creates a <div> element.
-
-
-
-// }
-
-
 
 for (i = 0; i < currentWord.length; i++) {
     // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
@@ -211,8 +203,7 @@ document.onkeyup = function (event) {
 
     // Captures the key press, converts it to lowercase, and saves it to a variable.
     var pressedKey = String.fromCharCode(event.which).toLowerCase();
-    // console.log(pressedKey);
-    // console.log(alphabet.includes(pressedKey));
+
 
     function checkUserEntry() {
 
@@ -223,9 +214,8 @@ document.onkeyup = function (event) {
                     1. Will create row with a # of columns that equals the number of letters in the selected word.
                     2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
                 */
-                // tries--;    // number of tries goes down by 1.
+
                 wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
-                // console.log(wordDisplay);
 
                 // ==== ACTIVATE MAYBE ====
                 // letterSlot = document.createTextNode(wordDisplay[i]);
@@ -261,14 +251,11 @@ document.onkeyup = function (event) {
 
     function compareArrayElements(arr1, arr2) {
         for (j = 0; j < currentWord.length; j++) {
+
             if (arr1[j] != arr2[j]) {
                 return false;
-                // continue;
             }
-            // else {
-            //     break;
-            // }
-        }
+
         return true;
     }
 
@@ -318,31 +305,12 @@ document.onkeyup = function (event) {
             alert("Press a valid key!");
         }
 
-        // if (wordDisplay == wordSlot) {
-        //     displayWinScreen();     // Need to define.
-        // }
+
     }
 
     else {
         displayGameOver();      // Need to define.
     }
-
-
-
-
-
-    // Set up score loop here.
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
