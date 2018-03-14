@@ -41,6 +41,11 @@ Game Plan:
     11. If the input doesn't match any of the letters of the word, 
         a. Letter appears in "used letter" section.                                                         (o)
         b. Hangman body part drawn.
+            i. create a variable that stores a div. This div
+                will be where the hangman picture is displayed.
+            ii. After every incorrect guess, a stage of the hangman
+                picture is displayed.
+            iii. 10 stages in total.
         c. # of tries goes down by 1.                                                                       (o)
 
 12. If user guessed all letters of word correctly,                                                          (o)
@@ -176,7 +181,13 @@ var guessedLetters = [];    // will hold the incorrect letters.
 var showGuessedLetters = document.getElementById("guesses");
 var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
 
-var hmPics = ["assets/images/hm-stage0", "assets/images/hmstage-1", "assets/images/hm-stage3", "assets/images/hm-stage4", "assets/images/hm-stage5", "assets/images/hm-stage6", "assets/images/hm-stage7", "assets/images/hm-stage8", "assets/images/hm-stage9", "assets/images/hm-stage10"];
+var hmPics = ["assets/images/hm-stage0.jpg", "assets/images/hm-stage1.jpg", "assets/images/hm-stage3.jpg", "assets/images/hm-stage4.jpg", "assets/images/hm-stage5.jpg", "assets/images/hm-stage6.jpg", "assets/images/hm-stage7.jpg", "assets/images/hm-stage8.jpg", "assets/images/hm-stage9.jpg", "assets/images/hm-stage10.jpg"];
+
+var picHolder = document.getElementById("theHangman");
+var img = document.createElement("img");
+picHolder.appendChild(img);
+var x = 0;
+img.setAttribute("src", hmPics[x]);
 
 
 
@@ -254,6 +265,9 @@ document.onkeyup = function (event) {
 
             if (guessedLetters.includes(pressedKey) === false) {    // if the guessedLetters array does NOT contain the pressed key
                 guessedLetters.unshift(pressedKey);     // adds the pressed key to the guessedLetters array
+                x = x + 1;
+                img.setAttribute("src", hmPics[x]);
+
             }
         }
 
