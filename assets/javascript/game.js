@@ -184,10 +184,19 @@ var showWordDisplay = document.getElementById("holder");    // This variable is 
 var hmPics = ["assets/images/hm-stage0.jpg", "assets/images/hm-stage1.jpg", "assets/images/hm-stage2.jpg", "assets/images/hm-stage3.jpg", "assets/images/hm-stage4.jpg", "assets/images/hm-stage5.jpg", "assets/images/hm-stage6.jpg", "assets/images/hm-stage7.jpg", "assets/images/hm-stage8.jpg", "assets/images/hm-stage9.jpg", "assets/images/hm-stage10.jpg"];
 
 var picHolder = document.getElementById("theHangman");
+var imgHolder = document.createElement("div");
+imgHolder.id = "clearfix";
+// imgHolder.id = "img-resize";
 var img = document.createElement("img");
+// imgHolder.appendChild(img);
+// picHolder.appendChild(imgHolder);
 picHolder.appendChild(img);
 var x = 0;
 img.setAttribute("src", hmPics[x]);
+img.id = "img-resize";
+img.className = "pt-5 pl-0";
+// img setAttribute("height", 100%);
+// img.setAttribute("width", auto);
 
 
 
