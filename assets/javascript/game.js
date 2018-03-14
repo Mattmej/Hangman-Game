@@ -10,9 +10,9 @@ Game Plan:
 2. Create an array of the letters of the alphabet.                                                          (o)
 
 3. Create a variable that stores the number of tries                                                    (in progress)
-    a. If the currentWord has less than 6 letters, 
+    a. If the currentWord has less than 6 letters,                                                          (o)
         then the # of tries will be 10.
-    b. If the currentWord has 6 or more letters,
+    b. If the currentWord has 6 or more letters,                                                         (bonus)
         then the # of tries will be the # of letters in the word
         multiplied by 2.
 
@@ -29,11 +29,11 @@ Game Plan:
     b. Compare the letter to the letters of the word array                                                  (o)
         i. We will most likely need to use the charAt() method.
 
-    8. If the input matches the first letter of the word
-        a. Letter appears in its proper column slot.                                                    (in progress)
+    8. If the input matches the first letter of the word                                                    (A)
+        a. Letter appears in its proper column slot.                                                        (o)
         b. # of tries goes down by 1.                                                                       (o)
 
-    9. If the input doesn't match the first letter of the word
+    9. If the input doesn't match the first letter of the word                                              (A)
         a. Go to next letter of the word.                                                                   (0)
 
     10. Do step 5 and 6 for all the letters of the word.                                                    (o)
@@ -204,8 +204,8 @@ var tries = 10;
 var gameOver = false;
 
 // ACTIVATE LATER
-// var showTries = document.getElementById("tries");
-// showTries.innerHTML = "Tries: " + tries;
+var showTries = document.getElementById("tries");
+showTries.innerHTML = "Tries: " + tries;
 
 
 
@@ -296,15 +296,6 @@ i = 2:
 
 
 
-
-
-
-
-
-
-
-
-
     function displayWinScreen() {
         alert("You won!");
         var confirmNewGame = confirm("Start a new game?");
@@ -352,13 +343,13 @@ i = 2:
 
             checkUserEntry();   // this will change the entries of wordDisplay.
             tries--;        // these are counted correctly! Yes!
-            // console.log("Tries = " + tries);
+            console.log("Tries = " + tries);
 
             // showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
             
             // ==== ACTIVATE LATER ====
             // showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
-            // showTries.innerHTML = "Tries: " + tries;
+            showTries.innerHTML = "Tries: " + tries;
 
             console.log("wordDisplay = " + wordDisplay);
            
