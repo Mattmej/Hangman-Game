@@ -232,8 +232,9 @@ document.onkeyup = function (event) {
                 wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
                 // console.log(wordDisplay);
 
-                var letter2 = document.getElementById("holder").querySelectorAll(".col");
-                letter2[i].innerHTML = wordDisplay[i];
+                // selects all elements with the class "col" under <div id = "holder"></div>
+                var letter2 = document.getElementById("holder").querySelectorAll(".col");   
+                letter2[i].innerHTML = wordDisplay[i];  // sets the ith child of letter2 to the letter in wordDisplay
                 // ==== ACTIVATE MAYBE ====
                 // letterSlot = document.createTextNode(wordDisplay[i]);
                 // letter2.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
