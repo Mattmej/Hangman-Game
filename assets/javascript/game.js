@@ -139,6 +139,16 @@ Troubleshooting
 6. Problem: Display of word's letters to correct divs of webpage
     a. Issue: Whenever letters display on screen, they don't go into their divs. Instead, they all clump together into a word.
     b. Attempt 1: Examine where the js file puts the characters of the wordDisplay array.
+        i. Noticed that new divs were created whenever new characters were displayed to the page.
+        ii. Created one id and one variable to try rectifying thie issue.
+    c. Attempt 2: [see b-ii]
+        i. Result: Partial Success.
+        ii. Letters are displayed to column slots on screen, but are placed in a strange order.
+        iii. e.g. "bottle." Enter b: _ _ _ _ _ b
+                                o: _ _ _ _ b o
+                                t: _ _ _ b o t
+                                etc.
+                                
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -175,11 +185,13 @@ for (i = 0; i < currentWord.length; i++) {
     wordDisplay[i] = "_";                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
     var letter = document.createElement("div");     // creates a <div> node
     letter.className = "col";
+    letter.id = "letter-slot";
     var letterSlot = document.createTextNode(wordDisplay[i]);   // creates a "text node" that contains a letter of the current word.
     letter.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
     showWordDisplay.appendChild(letter);            // appends the letter from the last step to the showWordDisplay variable.
 
 }
+
 
 console.log("wordSlot = " + wordSlot);
 
@@ -220,10 +232,11 @@ document.onkeyup = function (event) {
                 wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
                 // console.log(wordDisplay);
 
+                var letter2 = document.getElementById("letter-slot");
                 // ==== ACTIVATE MAYBE ====
-                // letterSlot = document.createTextNode(wordDisplay[i]);
-                // letter.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
-                // showWordDisplay.appendChild(letter); 
+                letterSlot = document.createTextNode(wordDisplay[i]);
+                letter2.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
+                showWordDisplay.appendChild(letter2); 
 
             }
 
@@ -240,6 +253,55 @@ document.onkeyup = function (event) {
         }
     
     }
+
+/*
+
+//////////////////////////////////////////////////////////////////////
+
+Example case:
+currentWord = "bottle"
+pressedKey = "t"
+
+i = 0:
+    "t" != "b"
+    continue
+
+i = 1: 
+    "t" != "o"
+    continue
+
+i = 2: 
+    "t" === "t"
+    wordDisplay = ["_", "_", "_", "_", "_", "_"]
+    but now "t" is added.
+    wordDisplay = ["_", "_", "t", "_", "_", "_"]
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function displayWinScreen() {
         alert("You won!");
