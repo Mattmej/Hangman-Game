@@ -4,8 +4,8 @@ Game Plan:
 1. Create an array of words.                                                                            (in progress)
     a. These words will be used in the hangman game for users to guess.
     b. Easy mode array                                                                                      (o)
-    c. Normal mode                                                                                      (bonus)
-    d. Hard mode                                                                                        (bonus)
+    c. Normal mode                                                                                          (x)
+    d. Hard mode                                                                                            (x)
 
 2. Create an array of the letters of the alphabet.                                                          (A)
 
@@ -165,7 +165,7 @@ Troubleshooting
 // Math.floor((Math.random() * array.length))
 
 // words that will be randomly selected
-var words = ["car", "bird", "coffee", "bottle", "shirt", "html"]
+var words = ["car", "bird", "coffee", "bottle", "shirt", "html", "city", "skyline", "metropolis", "crowd", "commute", "traffic", "poverty"]
 
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
