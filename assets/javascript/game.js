@@ -222,29 +222,28 @@ pauseButton.setAttribute("onclick", "pauseMusic()");                    // adds 
 
 
 for (i = 0; i < currentWord.length; i++) {
-    // wordSlot.push(currentWord.charAt(j));       // Will hold the letters of the word for display on the page
-    wordSlot.push(currentWord.charAt(i));      // Will hold the letters.
-    wordDisplay[i] = "_";                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
-    var letter = document.createElement("div");     // creates a <div> node
-    letter.className = "col bigtext";
-    letter.id = "letter-slot";
+
+    wordSlot.push(currentWord.charAt(i));                       // Places the letters of the word into the wordSlot array.
+    wordDisplay[i] = "_";                                       // Holds underscores in the wordDisplay array, one for each letter in the current word.
+    var letter = document.createElement("div");                 // creates a <div> node
+    letter.className = "col bigtext";                           // gives the class names "col" and "bigtext" to the <div> node
+    letter.id = "letter-slot";                                  // gives the id "letter-slot" to the <div> node
     var letterSlot = document.createTextNode(wordDisplay[i]);   // creates a "text node" that contains a letter of the current word.
-    letter.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
-    showWordDisplay.appendChild(letter);            // appends the letter from the last step to the showWordDisplay variable.
+
+    letter.appendChild(letterSlot);                             // adds an entry of the wordSlot array to a letter node
+                                                                // NOTE: appendChild will only accept nodes as arguments.
+
+    showWordDisplay.appendChild(letter);                        // appends the letter from the last step to the showWordDisplay variable.
 
 }
 
 
-console.log("wordSlot = " + wordSlot);
+console.log("wordSlot = " + wordSlot);                          // displays the wordSlot array to the console
 
+var tries = 10;                                                 // number of tries
 
-
-
-// console.log(wordSlot);
-var tries = 10;
-
-var showTries = document.getElementById("tries");
-showTries.innerHTML = "Tries: " + tries;
+var showTries = document.getElementById("tries");               // accesses the element with the "tries" id.
+showTries.innerHTML = "Tries: " + tries;                        // adds text to display in the element with the "tries" id.
 
 
 
@@ -258,38 +257,32 @@ document.onkeyup = function (event) {
     var pressedKey = String.fromCharCode(event.which).toLowerCase();
 
 
-    function checkUserEntry() {
+    function checkUserEntry() {                                    // function to check the user's keyboard input against the current word
 
-        for (i = 0; i < currentWord.length; i++) {  // checks user keyboard input against the current word.
+        for (i = 0; i < currentWord.length; i++) {                 // checks user keyboard input against the current word.
 
-            if (pressedKey === currentWord.charAt(i)) {         // if the pressed key is included in the word
-                /* # display letter in the correct slot on the screen
-                    1. Will create row with a # of columns that equals the number of letters in the selected word.
-                    2. Whenever the pressed key is included, the letter will appear in one of the row's columns.
-                */
-                // tries--;    // number of tries goes down by 1.
-                wordDisplay.splice(i, 1, pressedKey);   // adds the pressed key to the wordDisplay array and removes an empty element 
-                // console.log(wordDisplay);
+            if (pressedKey === currentWord.charAt(i)) {            // if the pressed key matches the character in the current slot
+               
+                wordDisplay.splice(i, 1, pressedKey);              // adds the pressed key to the wordDisplay array and removes an empty element 
+
 
                 // selects all elements with the class "col" under <div id = "holder"></div>
                 var letter2 = document.getElementById("holder").querySelectorAll(".col");
-                letter2[i].innerHTML = wordDisplay[i];  // sets the ith child of letter2 to the letter in wordDisplay
-                
-
+                letter2[i].innerHTML = wordDisplay[i];              // sets the ith child of letter2 to the letter in wordDisplay
             }
 
-            else {
-                continue;
+            else {                                                  // if the pressed key does NOT match the character in the current slot
+                continue;                                           // goes to the next iteration
             }
         }
 
-        if (currentWord.includes(pressedKey) === false) {   // if the pressed key is NOT included in the word
+        if (currentWord.includes(pressedKey) === false) {            // if the pressed key is NOT included in the word
 
-            if (guessedLetters.includes(pressedKey) === false) {    // if the guessedLetters array does NOT contain the pressed key
-                guessedLetters.unshift(pressedKey);     // adds the pressed key to the guessedLetters array
-                x = x + 1;
-                img.setAttribute("src", hmPics[x]);
-                tries--;
+            if (guessedLetters.includes(pressedKey) === false) {     // if the guessedLetters array does NOT contain the pressed key
+                guessedLetters.unshift(pressedKey);                  // adds the pressed key to the guessedLetters array
+                x = x + 1;                                           // hmPics index variable goes up by 1
+                img.setAttribute("src", hmPics[x]);                  // displays the next stage of the hangman picture
+                tries--;                                             // # of tries goes down by 1
 
             }
         }
@@ -333,9 +326,6 @@ document.onkeyup = function (event) {
     */
 
 
-
-
-
     function displayWinScreen() {
         alert("You won!");
         var confirmNewGame = confirm("Start a new game?");
@@ -348,7 +338,6 @@ document.onkeyup = function (event) {
         for (j = 0; j < currentWord.length; j++) {
             if (arr1[j] != arr2[j]) {
                 return false;
-                // continue;
             }
             
         }
@@ -372,12 +361,11 @@ document.onkeyup = function (event) {
 
     */
 
-    if (tries > 0) {    // if the user still has tries
+    if (tries > 0) {                                // if the user still has tries
 
         if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
 
-            checkUserEntry();   // this will change the entries of wordDisplay.
-            // tries--;        // these are counted correctly! Yes!
+            checkUserEntry();                       // this will change the entries of wordDisplay.
             console.log("Tries = " + tries);
 
 
