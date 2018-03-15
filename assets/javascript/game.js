@@ -9,10 +9,10 @@ Game Plan:
 
 2. Create an array of the letters of the alphabet.                                                          (o)
 
-3. Create a variable that stores the number of tries                                                    (in progress)
+3. Create a variable that stores the number of tries                                                        (A)
     a. If the currentWord has less than 6 letters,                                                          (o)
         then the # of tries will be 10.
-    b. If the currentWord has 6 or more letters,                                                         (bonus)
+    b. If the currentWord has 6 or more letters,                                                            (x)
         then the # of tries will be the # of letters in the word
         multiplied by 2.
 
@@ -164,51 +164,61 @@ Troubleshooting
 // random number between 0 and the array length:
 // Math.floor((Math.random() * array.length))
 
+// words that will be randomly selected
 var words = ["car", "bird", "coffee", "bottle", "shirt", "html"]
 
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 // This variable will select a random word in the words array.
 var currentWord = words[Math.floor((Math.random() * words.length))];
-console.log(currentWord);
+console.log(currentWord);                                       // displays the picked word to the console
 
-var wordSlot = [];
-var wordDisplay = [];
+var wordSlot = [];                                              // holds each character of the current word
+var wordDisplay = [];                                           // will hold the picked letters and display them to the page
 
-var guessedLetters = [];    // will hold the incorrect letters.
-var showGuessedLetters = document.getElementById("guesses");
-var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
+var guessedLetters = [];                                        // will hold the incorrect letters.
+var showGuessedLetters = document.getElementById("guesses");    // Accesses the div with the "guesses" id.
+var showWordDisplay = document.getElementById("holder");        // Accesses the div with the "holder" id.
 
+// Array of hangman picture locations
 var hmPics = ["assets/images/hm-stage0.jpg", "assets/images/hm-stage1.jpg", "assets/images/hm-stage2.jpg", "assets/images/hm-stage3.jpg", "assets/images/hm-stage4.jpg", "assets/images/hm-stage5.jpg", "assets/images/hm-stage6.jpg", "assets/images/hm-stage7.jpg", "assets/images/hm-stage8.jpg", "assets/images/hm-stage9.jpg", "assets/images/hm-stage10.jpg"];
 
-var picHolder = document.getElementById("theHangman");
-var imgHolder = document.createElement("div");
+var picHolder = document.getElementById("theHangman");  // Accesses the div with the "theHangman" id.
+var imgHolder = document.createElement("div");          // creates a new "div" element
 imgHolder.id = "clearfix";
-var img = document.createElement("img");
+var img = document.createElement("img");                // creates a new "img" element
 
-picHolder.appendChild(img);
-var x = 0;
-img.setAttribute("src", hmPics[x]);
-img.id = "img-resize";
-img.className = "pt-5 pl-0";
-var audioElement = document.createElement("audio");
-audioElement.setAttribute("src", "assets/redbone-instrumental.mp3");
+picHolder.appendChild(img);                             // adds the "img" element to the div with the "theHangman" id.
+var x = 0;                                              // a variable for the index of the hmPics array
+img.setAttribute("src", hmPics[x]);                     // adds an "src" to the "img" element, with the src being an address in the hmPics array
+img.id = "img-resize";                                  // adds the id "img-resize" to the "img" element
+img.className = "pt-5 pl-0";                            // adds classes to the "img" element
 
-function playMusic() {
+
+
+
+/////////////////// Music Section /////////////////////////
+
+var audioElement = document.createElement("audio");                     // creates a new "audio" element
+audioElement.setAttribute("src", "assets/redbone-instrumental.mp3");    // adds an "src" to the "audio" element. Links to the music.
+
+function playMusic() {                                                  // function to play the music
     audioElement.play();
 }
 
-function pauseMusic() {
+function pauseMusic() {                                                 // function to pause the music
     audioElement.pause();
 }
 
-var playButton = document.getElementById("play-button");
-playButton.setAttribute("onclick", "playMusic()");
+var playButton = document.getElementById("play-button");                // accesses the element with the "play-button" id.
+playButton.setAttribute("onclick", "playMusic()");                      // adds the "onclick" attribute to the element with the "play-button" id.
+                                                                        // (plays the music when the element is clicked.)
 
-var pauseButton = document.getElementById("pause-button");
-pauseButton.setAttribute("onclick", "pauseMusic()");
+var pauseButton = document.getElementById("pause-button");              // accesses the div with the "pause-button" id.
+pauseButton.setAttribute("onclick", "pauseMusic()");                    // adds the "onclick" attribute to the div with the "pause-button" id.
+                                                                        // (pauses the music when the element is clicked.)
 
-
+/////////////////////////////////////////////////////////////
 
 
 for (i = 0; i < currentWord.length; i++) {
