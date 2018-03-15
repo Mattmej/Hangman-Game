@@ -164,19 +164,17 @@ Troubleshooting
 // random number between 0 and the array length:
 // Math.floor((Math.random() * array.length))
 
-var easyWords = ["car", "bird", "coffee", "bottle", "shirt", "html"]
+var words = ["car", "bird", "coffee", "bottle", "shirt", "html"]
 
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
-// This variable will select a random word in the easyWords array.
-var currentWord = easyWords[Math.floor((Math.random() * easyWords.length))];
-// document.write(currentWord);
+// This variable will select a random word in the words array.
+var currentWord = words[Math.floor((Math.random() * words.length))];
 console.log(currentWord);
 
 var wordSlot = [];
-// var wordSlot2 = [];
 var wordDisplay = [];
-// var showWordDisplay = document.createElement("div");
+
 var guessedLetters = [];    // will hold the incorrect letters.
 var showGuessedLetters = document.getElementById("guesses");
 var showWordDisplay = document.getElementById("holder");    // This variable is connected to an id in the html.
@@ -186,17 +184,14 @@ var hmPics = ["assets/images/hm-stage0.jpg", "assets/images/hm-stage1.jpg", "ass
 var picHolder = document.getElementById("theHangman");
 var imgHolder = document.createElement("div");
 imgHolder.id = "clearfix";
-// imgHolder.id = "img-resize";
 var img = document.createElement("img");
-// imgHolder.appendChild(img);
-// picHolder.appendChild(imgHolder);
+
 picHolder.appendChild(img);
 var x = 0;
 img.setAttribute("src", hmPics[x]);
 img.id = "img-resize";
 img.className = "pt-5 pl-0";
-// img setAttribute("height", 100%);
-// img.setAttribute("width", auto);
+
 
 
 
@@ -218,15 +213,12 @@ for (i = 0; i < currentWord.length; i++) {
 
 console.log("wordSlot = " + wordSlot);
 
-// showWordDisplay.innerHTML = wordDisplay.join('');
 
 
 
 // console.log(wordSlot);
 var tries = 10;
-// var gameOver = false;
 
-// ACTIVATE LATER
 var showTries = document.getElementById("tries");
 showTries.innerHTML = "Tries: " + tries;
 
@@ -258,10 +250,7 @@ document.onkeyup = function (event) {
                 // selects all elements with the class "col" under <div id = "holder"></div>
                 var letter2 = document.getElementById("holder").querySelectorAll(".col");
                 letter2[i].innerHTML = wordDisplay[i];  // sets the ith child of letter2 to the letter in wordDisplay
-                // ==== ACTIVATE MAYBE ====
-                // letterSlot = document.createTextNode(wordDisplay[i]);
-                // letter2.appendChild(letterSlot);                 // adds an entry of the wordSlot array to a letter node
-                // showWordDisplay.appendChild(letter2); 
+                
 
             }
 
@@ -329,9 +318,6 @@ document.onkeyup = function (event) {
         if (confirmNewGame) {
             location.reload();
         }
-        // else {
-        //     break;
-        // }
     }
 
     function compareArrayElements(arr1, arr2) {
@@ -340,9 +326,7 @@ document.onkeyup = function (event) {
                 return false;
                 // continue;
             }
-            // else {
-            //     break;
-            // }
+            
         }
         return true;
     }
@@ -372,7 +356,6 @@ document.onkeyup = function (event) {
             // tries--;        // these are counted correctly! Yes!
             console.log("Tries = " + tries);
 
-            // showWordDisplay.innerHTML = wordDisplay.join('');   // Display the result of the correct guess to page.
 
             // ==== ACTIVATE LATER ====
             showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
@@ -392,9 +375,7 @@ document.onkeyup = function (event) {
             alert("Press a valid key!");
         }
 
-        // if (wordDisplay == wordSlot) {
-        //     displayWinScreen();     // Need to define.
-        // }
+        
     }
 
     else if (tries == 0) {
