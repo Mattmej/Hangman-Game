@@ -2,18 +2,24 @@ body, html {
     height: 100%;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .space {
     margin-bottom: 20px;
 }
 
-.black-border {     /* For testing purposes only */
+.black-border {    
     border: 1px solid black;
 }
 
 .section {
     /* margin-bottom: 100px; */
     /* padding-bottom: 100px; */
-    height: 500px;
+    /* height: 500px; */
+    height: 450px;
+    width: auto;
 }
 
 #section-percent {
@@ -43,4 +49,11 @@ body, html {
 
 #clearfix {
     overflow: auto;
+}
+
+.bg {
+    background-image: url("../images/chicago-skyline.png");
+    height: auto;
+    background-size: cover;
+    background-position: center;
 }
