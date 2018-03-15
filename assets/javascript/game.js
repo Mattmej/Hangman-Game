@@ -7,7 +7,7 @@ Game Plan:
     c. Normal mode                                                                                      (bonus)
     d. Hard mode                                                                                        (bonus)
 
-2. Create an array of the letters of the alphabet.                                                          (o)
+2. Create an array of the letters of the alphabet.                                                          (A)
 
 3. Create a variable that stores the number of tries                                                        (A)
     a. If the currentWord has less than 6 letters,                                                          (o)
@@ -16,13 +16,13 @@ Game Plan:
         then the # of tries will be the # of letters in the word
         multiplied by 2.
 
-4. Make the website accept keyboard input.                                                                  (o)
+4. Make the website accept keyboard input.                                                                  (A)
 
-5. Have the website select a word from the array.                                                           (o)
+5. Have the website select a word from the array.                                                           (A)
     a. Store each letter of the word in an array.
     b. Create columns equal to the number of letters in the array.
 
-6. Do the following steps until game over or success.   
+6. Do the following steps until game over or success.                                                       (A)  
 
 7. Whenever the user enters a letter of the alphabet,                                                       (A)
     a. Convert the letter to lowercase.                                                                     (o)
@@ -34,11 +34,11 @@ Game Plan:
         b. # of tries goes down by 1.                                                                       (o)
 
     9. If the input doesn't match the first letter of the word                                              (A)
-        a. Go to next letter of the word.                                                                   (0)
+        a. Go to next letter of the word.                                                                   (o)
 
-    10. Do step 5 and 6 for all the letters of the word.                                                    (o)
+    10. Do step 5 and 6 for all the letters of the word.                                                    (A)
 
-    11. If the input doesn't match any of the letters of the word, 
+    11. If the input doesn't match any of the letters of the word,                                          (A)
         a. Letter appears in "used letter" section.                                                         (o)
         b. Hangman body part drawn.
             i. create a variable that stores a div. This div
@@ -48,16 +48,16 @@ Game Plan:
             iii. 10 stages in total.
         c. # of tries goes down by 1.                                                                       (o)
 
-12. If user guessed all letters of word correctly,                                                          (o)
+12. If user guessed all letters of word correctly,                                                          (A)
     a. User wins.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
 
-13. If # of tries = 0,                                                                                      ()
+13. If # of tries = 0,                                                                                      (A)
     a. Display game over somewhere in the document.
     b. User is offered a prompt, asking if they want to go to the next word or go back to menu.
     c. Maybe a function can be created.                                                                     (o)
 
-14. ...but what if the user DOESN'T enter a letter of the alphabet?                                         (o)
+14. ...but what if the user DOESN'T enter a letter of the alphabet?                                         (A)
     a. User gets a prompt saying "Enter a letter of the alphabet!"
 
 
@@ -289,62 +289,29 @@ document.onkeyup = function (event) {
 
     }
 
-    /*
-    
-    //////////////////////////////////////////////////////////////////////
-    
-    Example case:
-    currentWord = "bottle"
-    pressedKey = "t"
-    
-    i = 0:
-        "t" != "b"
-        continue
-    
-    i = 1: 
-        "t" != "o"
-        continue
-    
-    i = 2: 
-        "t" === "t"
-        wordDisplay = ["_", "_", "_", "_", "_", "_"]
-        but now "t" is added.
-        wordDisplay = ["_", "_", "t", "_", "_", "_"]
-    
-    
-    
-    
-    
-    
-    
-    
-    //////////////////////////////////////////////////////////////////////////
-    
-    
-    
-    
-    */
 
 
-    function displayWinScreen() {
+    function displayWinScreen() {                                       // function for displaying the win screen.
         alert("You won!");
         var confirmNewGame = confirm("Start a new game?");
-        if (confirmNewGame) {
-            location.reload();
+        if (confirmNewGame) {                                           // if the user selects "yes" to the above question
+            location.reload();                                          // reloads page
         }
     }
 
-    function compareArrayElements(arr1, arr2) {
-        for (j = 0; j < currentWord.length; j++) {
-            if (arr1[j] != arr2[j]) {
-                return false;
+    function compareArrayElements(arr1, arr2) {                         // function for comparing the elements of two arrays
+        for (j = 0; j < currentWord.length; j++) {                      // goes through each array element
+
+            if (arr1[j] != arr2[j]) {                                   // if at any point in the loop, if an element of one array does not 
+                                                                        // equal the element of the other array...
+                return false;                                           // return a value of "false"
             }
             
         }
-        return true;
+        return true;                                                    // otherwise, if the element of the array all match, return true.
     }
 
-    function displayGameOver() {
+    function displayGameOver() {                                        // function for displaying game over screen.
         alert("Game Over!");
         var confirmNewGame = confirm("Start a new game?");
         if (confirmNewGame) {
@@ -361,41 +328,39 @@ document.onkeyup = function (event) {
 
     */
 
-    if (tries > 0) {                                // if the user still has tries
+    if (tries > 0) {                                                     // if the user still has tries
 
-        if (alphabet.includes(pressedKey)) {        // what happens when the pressed key is an element of the alphabet array
+        if (alphabet.includes(pressedKey)) {                             // what happens when the pressed key is an element of the alphabet array
 
-            checkUserEntry();                       // this will change the entries of wordDisplay.
-            console.log("Tries = " + tries);
-
-
-            // ==== ACTIVATE LATER ====
-            showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;
-            showTries.innerHTML = "Tries: " + tries;
-
-            console.log("wordDisplay = " + wordDisplay);
+            checkUserEntry();                                            // this will change the entries of wordDisplay.
+            console.log("Tries = " + tries);                             // displays number of tries to console.
 
 
-            compareArrayElements(wordDisplay, wordSlot);
+            // displays the incorrect letters to the element with the "guesses" id
+            showGuessedLetters.innerHTML = "Incorrect Letters: " + guessedLetters;  
 
-            if (compareArrayElements(wordDisplay, wordSlot)) {
-                displayWinScreen();
+            showTries.innerHTML = "Tries: " + tries;                     // displays the number of tries to the element with the "tries" id
+
+            console.log("wordDisplay = " + wordDisplay);                 // displays the wordDisplay array to the console
+
+
+            compareArrayElements(wordDisplay, wordSlot);                 // runs the function to compare elements of two arrays
+
+            if (compareArrayElements(wordDisplay, wordSlot)) {           // if all elements match each other
+                displayWinScreen();                                      // win screen displayed
             }
         }
 
-        else {          // when the pressed key is NOT an element of the alphabet array
+        else {                                                           // when the pressed key is NOT an element of the alphabet array
             alert("Press a valid key!");
         }
 
         
     }
 
-    else if (tries == 0) {
-        displayGameOver();      // Need to define.
+    else if (tries == 0) {                                              // if the user runs out of tries
+        displayGameOver();                                              // game over  
     }
-
-
-
 
 
 
