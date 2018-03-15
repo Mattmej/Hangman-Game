@@ -191,8 +191,22 @@ var x = 0;
 img.setAttribute("src", hmPics[x]);
 img.id = "img-resize";
 img.className = "pt-5 pl-0";
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("src", "assets/redbone-instrumental.mp3");
 
+function playMusic() {
+    audioElement.play();
+}
 
+function pauseMusic() {
+    audioElement.pause();
+}
+
+var playButton = document.getElementById("play-button");
+playButton.setAttribute("onclick", "playMusic()");
+
+var pauseButton = document.getElementById("pause-button");
+pauseButton.setAttribute("onclick", "pauseMusic()");
 
 
 
